@@ -1,0 +1,53 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* Brand colours taken from the original Indoor Gardening Pro logo. */
+@theme inline {
+  --color-leaf-50: #eef8f2;
+  --color-leaf-100: #d6efe0;
+  --color-leaf-200: #aedfc2;
+  --color-leaf-300: #7cc89c;
+  --color-leaf-500: #1f9a5a;
+  --color-leaf-600: #13804a;
+  --color-leaf-700: #0e6a3d;
+  --color-leaf-800: #0d5432;
+  --color-leaf-900: #0b3d26;
+  --color-forest: #16302a;
+  --color-sun: #f6c445;
+  --color-sun-dark: #d9a520;
+  --color-ink: #1f2a27;
+  --color-stone: #6b726f;
+  --color-cream: #fbfaf6;
+  --font-sans: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-lora), ui-serif, Georgia, serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-ink);
+}
+
+.prose-article {
+  --tw-prose-body: var(--color-ink);
+  --tw-prose-headings: var(--color-forest);
+  --tw-prose-links: var(--color-leaf-700);
+  --tw-prose-bold: var(--color-forest);
+  --tw-prose-bullets: var(--color-leaf-500);
+  --tw-prose-quote-borders: var(--color-sun);
+  --tw-prose-th-borders: var(--color-leaf-200);
+  --tw-prose-td-borders: var(--color-leaf-100);
+}
+
+.prose-article h2,
+.prose-article h3 {
+  scroll-margin-top: 6rem;
+}
+
+.prose-article table {
+  display: block;
+  overflow-x: auto;
+}
