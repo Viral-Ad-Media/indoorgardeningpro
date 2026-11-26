@@ -34,10 +34,22 @@ Then open http://localhost:3000 and sign in at http://localhost:3000/sign-in/.
 
 ## Deploying (Vercel)
 
-1. Import the repo in Vercel.
-2. Add the environment variables above (Production and Preview).
-3. Run `npm run db:migrate`, `npm run db:seed` and `npm run create-admin` once against the production database (locally with the production `DATABASE_URL`).
-4. Point the domain at Vercel.
+1. Import the repo in Vercel. The Vercel Neon integration sets `DATABASE_URL` for you.
+2. Add `BETTER_AUTH_SECRET`, `BETTER_AUTH_URL` and `NEXT_PUBLIC_SITE_URL` (Production and Preview).
+3. Create the tables and load the content once, from your machine, against the production database:
+
+   ```bash
+   npx vercel link && npx vercel env pull .env.local --environment=production
+   npm run db:migrate
+   npm run db:seed
+   ADMIN_EMAIL=you@example.com ADMIN_PASSWORD='a long password' ADMIN_NAME='Your Name' npm run create-admin
+   ```
+
+4. Redeploy so the home page and sitemap are built with the content, then point the domain at Vercel.
+
+The build no longer fails if the database is empty or unreachable: pages that are prerendered at build
+time (`/` and `/sitemap.xml`) render with no articles and log a warning, then fill in on their next
+revalidation. Runtime database errors are still thrown as usual.
 
 ## Content
 
